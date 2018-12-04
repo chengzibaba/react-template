@@ -1,11 +1,11 @@
 // const path = require('path');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
-const copyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = function config() {
-  console.log(arguments);
+  // console.log(arguments);
   return {
     output: {
       filename: '[id].[chunkhash].js',
@@ -61,14 +61,14 @@ module.exports = function config() {
         template: './src/index.ejs',
         filename: './index.html',
       }),
-      new cleanWebpackPlugin(['dist']),
-      new copyWebpackPlugin([
+      new CleanWebpackPlugin(['dist']),
+      new CopyWebpackPlugin([
         {
           from: './public',
           to: './',
         },
       ]),
-      new uglifyjsWebpackPlugin({
+      new UglifyjsWebpackPlugin({
         uglifyOptions: {
           parallel: true,
           compress: {
